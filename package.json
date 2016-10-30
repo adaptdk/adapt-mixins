@@ -1,1 +1,27 @@
-
+{
+  "name": "adapt-mixins",
+  "version": "1.0.4",
+  "description": "Adapt mixins",
+  "main": "src/mixins.scss",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lassenorgaard/mixins.git"
+  },
+  "keywords": [
+    "mixins",
+    "sass",
+    "scss"
+  ],
+  "author": "Lasse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lassenorgaard/mixins/issues"
+  },
+  "homepage": "https://github.com/lassenorgaard/mixins#readme"
+}
