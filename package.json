@@ -4,6 +4,7 @@
   "description": "Adapt mixins",
   "main": "src/mixins.scss",
   "dependencies": {
+    "node-sass": "*"
   },
   "devDependencies": {},
   "scripts": {
