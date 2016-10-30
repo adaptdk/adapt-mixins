@@ -6,9 +6,7 @@
   "dependencies": {
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lassenorgaard/mixins.git"
@@ -16,7 +14,10 @@
   "keywords": [
     "mixins",
     "sass",
-    "scss"
+    "scss",
+    "lib",
+    "adapt",
+    "style"
   ],
   "author": "Lasse",
   "license": "ISC",
