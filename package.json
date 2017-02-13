@@ -1,6 +1,6 @@
 {
   "name": "adapt-mixins",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Adapt common mixins",
   "author": "Adapt",
   "main": "src/mixins/mixins.scss",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adaptdk/adapt-mixins.git#develop"
+    "url": "git+https://github.com/adaptdk/adapt-mixins.git"
   },
   "keywords": [
     "Mixins",
