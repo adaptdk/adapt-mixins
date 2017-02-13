@@ -1,7 +1,9 @@
+/// Converting table into inline-block
+// Author: Mads Thines
+
 // table {
 //   @include tableFix;
 // }
-// Converts the table to inline-blocks
 
 @mixin tableFix {
   display: inline-block;
