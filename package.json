@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adaptdk/adapt-mixins.git"
+    "url": "git+https://github.com/adaptdk/adapt-mixins.git#develop"
   },
   "keywords": [
     "mixins",
