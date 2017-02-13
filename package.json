@@ -1,7 +1,8 @@
 {
   "name": "adapt-mixins",
   "version": "1.0.0",
-  "description": "Adapt mixins",
+  "description": "Adapt common mixins",
+  "author": "Adapt",
   "main": "src/mixins.scss",
   "dependencies": {
     "node-sass": "*"
@@ -22,7 +23,6 @@
     "adapt",
     "style"
   ],
-  "author": "Lasse",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adaptdk/adapt-mixins/issues"

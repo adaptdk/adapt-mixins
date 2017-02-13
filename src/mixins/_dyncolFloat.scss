@@ -1,0 +1,28 @@
+/// Creates all elements inside of wrapper to be next to each other (Like flexbox)
+// Include Mixin on wrapper for children to justify.
+
+/// How to use (Everythings optional)
+// @include dyncolFloat;
+// Or
+// @include dyncolFloat(2%, article);
+
+// dynCol Mixin Usage with display: inline-block with no fix. Useful if you've compressed/minified your HTML.
+@mixin dyncolFloat($margin: 2%, $element: "*") {
+  @for $i from 1 through 12 {
+    > #{$element}:first-of-type:nth-last-of-type(#{$i}),
+    > #{$element}:first-of-type:nth-last-of-type(#{$i}) ~ #{$element} {
+      width: calc(100% / #{$i} - #{$margin} + (#{$margin} / #{$i}));
+      margin-left: $margin/2;
+      margin-right: $margin/2;
+      margin-bottom: 0;
+      float: left;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
