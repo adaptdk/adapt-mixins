@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Adapt common mixins",
   "author": "Adapt",
-  "main": "src/mixins.scss",
+  "main": "src/mixins/mixins.scss",
   "dependencies": {
     "node-sass": "*"
   },
