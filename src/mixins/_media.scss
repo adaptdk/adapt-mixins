@@ -1,0 +1,26 @@
+/// Media Query
+// Creates media queries
+// Author: Mads Thines
+
+/// How to use:
+// @include media($mediaQuery);
+
+@mixin media($mediaQuery:'', $mediaQuery2:'', $mediaQuery3:'', $mediaQuery4:'') {
+  @if $mediaQuery4 != '' {
+    @media screen and (#{$mediaQuery}) and (#{$mediaQuery2}), (#{$mediaQuery3}) and (#{$mediaQuery4}) {
+      @content;
+    }
+  } @else if $mediaQuery3 != '' {
+    @media screen and (#{$mediaQuery}) and (#{$mediaQuery2}), (#{$mediaQuery3}) {
+      @content;
+    }
+  } @else if $mediaQuery2 != '' {
+    @media screen and (#{$mediaQuery}) and (#{$mediaQuery2}) {
+      @content;
+    }
+  } @else {
+    @media screen and (#{$mediaQuery}) {
+      @content;
+    }
+  }
+}
