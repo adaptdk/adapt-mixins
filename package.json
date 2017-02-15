@@ -1,8 +1,9 @@
 {
   "name": "adapt-mixins",
-  "version": "1.0.0",
-  "description": "Adapt mixins",
-  "main": "src/mixins.scss",
+  "version": "1.0.3",
+  "description": "Adapt common mixins",
+  "author": "Adapt",
+  "main": "src/mixins/mixins.scss",
   "dependencies": {
     "node-sass": "*"
   },
@@ -15,14 +16,14 @@
     "url": "git+https://github.com/adaptdk/adapt-mixins.git"
   },
   "keywords": [
-    "mixins",
-    "sass",
-    "scss",
-    "lib",
-    "adapt",
-    "style"
+    "Mixins",
+    "Sass",
+    "Scss",
+    "Lib",
+    "Adapt",
+    "Frontend",
+    "Styling"
   ],
-  "author": "Lasse",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adaptdk/adapt-mixins/issues"

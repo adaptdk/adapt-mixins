@@ -1,0 +1,80 @@
+/// This mixin creates beautiful columns for the children inside the wrapper
+// Author: Mads Thines
+
+/// How to use (Everythings optional)
+// @include coller;
+// Or
+// @include coller(4, 3, 2, 1, 2%, *, alignement, $large, $medium, $small);
+
+@mixin coller(
+  $var1: 4,
+  $var2: 3,
+  $var3: 2,
+  $var4: 1,
+  $margin: 2%,
+  $element: "*",
+  $alignment: top,
+  $breakpoint1: $large,
+  $breakpoint2: $medium,
+  $breakpoint3: $small) {
+
+  > #{$element} {
+    display: inline-block;
+    vertical-align: $alignment;
+
+    @media screen and (min-width: $breakpoint1 - 1px) {
+      margin-right: $margin;
+      margin-bottom: $margin;
+      width: calc(((100% - (#{$var1} - 1) * #{$margin})) / #{$var1});
+
+      &:nth-of-type(#{$var1}n + #{$var1}) {
+        margin-right: 0;
+      }
+    }
+
+    // Breakpoint 1 - Change Columns
+    @media screen and (min-width: $breakpoint2) and (max-width: $breakpoint1 - 1px) {
+      margin-right: $margin;
+      margin-bottom: $margin;
+      width: calc(((100% - (#{$var2} - 1) * #{$margin})) / #{$var2});
+
+      &:nth-of-type(#{$var1}n + #{$var1}) {
+        margin-right: $margin;
+      }
+
+      &:nth-of-type(#{$var2}n + #{$var2}) {
+        margin-right: 0;
+      }
+    }
+
+    // Breakpoint 2 - Change Columns
+    @media screen and (min-width: $breakpoint3) and (max-width: $breakpoint2 - 1px) {
+      margin-right: $margin;
+      margin-bottom: $margin;
+      width: calc(((100% - (#{$var3} - 1) * #{$margin})) / #{$var3});
+
+      &:nth-of-type(#{$var2}n + #{$var2}) {
+        margin-right: $margin;
+      }
+
+      &:nth-of-type(#{$var3}n + #{$var3}) {
+        margin-right: 0;
+      }
+    }
+
+    // Breakpoint 3 - Change Columns
+    @media screen and (max-width: $breakpoint3 - 1px) {
+      margin-right: $margin;
+      margin-bottom: $margin;
+      width: calc(((100% - (#{$var4} - 1) * #{$margin})) / #{$var4});
+
+      &:nth-of-type(#{$var3}n + #{$var3}) {
+        margin-right: $margin;
+      }
+
+      &:nth-of-type(#{$var4}n + #{$var4}) {
+        margin-right: 0;
+      }
+    }
+  }
+}
