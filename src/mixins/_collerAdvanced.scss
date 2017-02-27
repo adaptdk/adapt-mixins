@@ -1,0 +1,84 @@
+/// This mixin creates beautiful columns for the children inside the wrapper
+// This variation of the collor gives the posibility to change the margin in the breakpoints aswell
+// Author: Mads Thines
+
+/// How to use (Everythings optional)
+// @include collerAdvanced;
+// Or
+// @include collerAdvanced(4, 3, 2, 1, 2%, 2%, 2%, 0, *, alignement, $large, $medium, $small);
+
+@mixin collerAdvanced(
+  $var1: 4,
+  $var2: 3,
+  $var3: 2,
+  $var4: 1,
+  $margin1: 2%,
+  $margin2: 2%,
+  $margin3: 2%,
+  $margin4: 2%,
+  $element: "*",
+  $alignment: top,
+  $breakpoint1: $large,
+  $breakpoint2: $medium,
+  $breakpoint3: $small) {
+
+  > #{$element} {
+    display: inline-block;
+    vertical-align: $alignment;
+
+    @media screen and (min-width: $breakpoint1 - 1px) {
+      margin-right: $margin1;
+      margin-bottom: $margin1;
+      width: calc(((100% - (#{$var1} - 1) * #{$margin1})) / #{$var1});
+
+      &:nth-of-type(#{$var1}n + #{$var1}) {
+        margin-right: 0;
+      }
+    }
+
+    // Breakpoint 1 - Change Columns
+    @media screen and (min-width: $breakpoint2) and (max-width: $breakpoint1 - 1px) {
+      margin-right: $margin2;
+      margin-bottom: $margin2;
+      width: calc(((100% - (#{$var2} - 1) * #{$margin2})) / #{$var2});
+
+      &:nth-of-type(#{$var1}n + #{$var1}) {
+        margin-right: $margin2;
+      }
+
+      &:nth-of-type(#{$var2}n + #{$var2}) {
+        margin-right: 0;
+      }
+    }
+
+    // Breakpoint 2 - Change Columns
+    @media screen and (min-width: $breakpoint3) and (max-width: $breakpoint2 - 1px) {
+      margin-right: $margin3;
+      margin-bottom: $margin3;
+      width: calc(((100% - (#{$var3} - 1) * #{$margin3})) / #{$var3});
+
+      &:nth-of-type(#{$var2}n + #{$var2}) {
+        margin-right: $margin3;
+      }
+
+      &:nth-of-type(#{$var3}n + #{$var3}) {
+        margin-right: 0;
+      }
+    }
+
+    // Breakpoint 3 - Change Columns
+    @media screen and (max-width: $breakpoint3 - 1px) {
+      margin-right: $margin4;
+      margin-bottom: $margin4;
+      width: calc(((100% - (#{$var4} - 1) * #{$margin4})) / #{$var4});
+
+      &:nth-of-type(#{$var3}n + #{$var3}) {
+        margin-right: $margin4;
+      }
+
+      &:nth-of-type(#{$var4}n + #{$var4}) {
+        margin-right: 0;
+      }
+    }
+  }
+}
