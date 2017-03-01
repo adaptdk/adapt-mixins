@@ -1,7 +1,7 @@
 {
   "name": "adapt-mixins",
-  "version": "1.0.6",
-  "description": "Adapt common mixins",
+  "version": "1.0.7",
+  "description": "Adapt Frontend Development Tools",
   "author": "Adapt",
   "main": "src/mixins/mixins.scss",
   "dependencies": {
@@ -16,13 +16,18 @@
     "url": "git+https://github.com/adaptdk/adapt-mixins.git"
   },
   "keywords": [
-    "Mixins",
     "Sass",
+    "Mixins",
     "Scss",
     "Lib",
     "Adapt",
     "Frontend",
-    "Styling"
+    "Styling",
+    "Coller",
+    "DynCol",
+    "Inner",
+    "Media",
+    "Clearfix"
   ],
   "license": "ISC",
   "bugs": {

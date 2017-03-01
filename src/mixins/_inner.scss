@@ -1,0 +1,35 @@
+// Depending on a max-width variable.
+//
+// @include inner;
+//  or
+// @include inner(20px, 40px, 10px);
+//
+
+@mixin inner($padding: 20px, $padding-medium: null, $padding-small: null) {
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  @if $padding > 0 {
+    padding-left: $padding-small;
+    padding-right: $padding-small;
+
+    @if $padding-medium == null {
+      $padding-medium: $padding-small;
+    }
+
+    @if $padding-small == null {
+      $padding-small: $padding/2;
+    }
+
+    @include media("min-width: $small") {
+      padding-left: $padding-medium;
+      padding-right: $padding-medium;
+    }
+
+    @include media("min-width: $medium") {
+      padding-left: $padding;
+      padding-right: $padding;
+    }
+  }
+}
