@@ -1,35 +1,48 @@
-// Depending on a max-width variable.
+// Depending on following variables
+// $max-width
 //
 // @include inner;
 //  or
-// @include inner(20px, 40px, 10px);
+// @include inner(20px, 20px, 10px, 5px);
+//
+// Breakpoints naming
+// No max width, $large, $medium, $small
 //
 
-@mixin inner($padding: 20px, $padding-medium: null, $padding-small: null) {
+@mixin inner($padding: 20px, $padding-large: null, $padding-medium: null, $padding-small: null) {
   max-width: $max-width;
   margin-left: auto;
   margin-right: auto;
 
-  @if $padding > 0 {
+  @if $padding > 0 or
+  $padding-large > 0 or
+  $padding-medium > 0 or
+  $padding-small > 0 {
     padding-left: $padding-small;
     padding-right: $padding-small;
 
-    @if $padding-medium == null {
-      $padding-medium: $padding-small;
-    }
-
-    @if $padding-small == null {
+    @if $padding-small != null {
       $padding-small: $padding/2;
+      @include media("min-width: $small") {
+        padding-left: $padding-medium;
+        padding-right: $padding-medium;
+      }
     }
 
-    @include media("min-width: $small") {
-      padding-left: $padding-medium;
-      padding-right: $padding-medium;
+    @if $padding-medium != null {
+      $padding-medium: $padding-small;
+      @include media("min-width: $medium") {
+        padding-left: $padding;
+        padding-right: $padding;
+      }
     }
 
-    @include media("min-width: $medium") {
-      padding-left: $padding;
-      padding-right: $padding;
+    @if $padding-large != null {
+      $padding-large: $padding-medium;
+      @include media("min-width: $large") {
+        padding-left: $padding;
+        padding-right: $padding;
+      }
     }
   }
 }
