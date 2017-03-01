@@ -12,37 +12,37 @@
 
 @mixin inner(
   $padding: 20px,
-  $padding-small: null,
+  $padding-large: null,
   $padding-medium: null,
-  $padding-large: null) {
+  $padding-small: null) {
 
   max-width: $max-width;
   margin-left: auto;
   margin-right: auto;
 
   @if $padding > 0 or
-  $padding-small > 0 or
+  $padding-large > 0 or
   $padding-medium > 0 or
-  $padding-large > 0 {
+  $padding-small > 0 {
     padding-left: $padding;
     padding-right: $padding;
 
     @if $padding-small != null {
-      @include media("min-width: $small") {
+      @include media("max-width: $small") {
         padding-left: $padding-small;
         padding-right: $padding-small;
       }
     }
 
     @if $padding-medium != null {
-      @include media("min-width: $medium") {
+      @include media("max-width: $medium") {
         padding-left: $padding-medium;
         padding-right: $padding-medium;
       }
     }
 
     @if $padding-large != null {
-      @include media("min-width: $large") {
+      @include media("max-width: $large") {
         padding-left: $padding-large;
         padding-right: $padding-large;
       }
