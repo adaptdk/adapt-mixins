@@ -1,6 +1,6 @@
 {
   "name": "adapt-mixins",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Adapt Frontend Development Tools",
   "author": "Adapt",
   "main": "src/mixins/mixins.scss",
@@ -24,6 +24,7 @@
     "Frontend",
     "Styling",
     "Coller",
+    "Col",
     "DynCol",
     "Inner",
     "Media",
