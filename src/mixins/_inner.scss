@@ -27,10 +27,10 @@
     padding-left: $padding;
     padding-right: $padding;
 
-    @if $padding-small != null {
-      @include media("max-width: $small") {
-        padding-left: $padding-small;
-        padding-right: $padding-small;
+    @if $padding-large != null {
+      @include media("max-width: $large") {
+        padding-left: $padding-large;
+        padding-right: $padding-large;
       }
     }
 
@@ -41,10 +41,10 @@
       }
     }
 
-    @if $padding-large != null {
-      @include media("max-width: $large") {
-        padding-left: $padding-large;
-        padding-right: $padding-large;
+    @if $padding-small != null {
+      @include media("max-width: $small") {
+        padding-left: $padding-small;
+        padding-right: $padding-small;
       }
     }
   }
