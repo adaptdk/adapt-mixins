@@ -1,0 +1,37 @@
+@function sum($list) {
+  $total: 0;
+  @each $item in $list {
+    $total: $total + $item;
+  }
+  @return $total;
+}
+
+@mixin collerShift($columnList: null, $padding: null) {
+  > * {
+    display: inline-block;
+    vertical-align: top;
+
+    @for $i from 1 through length($columnList) {
+      &:nth-child(#{$i}) {
+        $width: (100% / sum($columnList)) * nth($columnList, $i);
+        width: $width;
+      }
+
+      @if $padding != null {
+
+        &:nth-child(#{$i}) {
+          $width: (100% / sum($columnList)) * nth($columnList, $i);
+          width: $width;
+        }
+
+        &:nth-child(1n+2) {
+          padding-left: $padding/2;
+        }
+
+        &:nth-last-child(1n+2) {
+          padding-right: $padding/2;
+        }
+      }
+    }
+  }
+}
