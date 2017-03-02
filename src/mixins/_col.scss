@@ -1,0 +1,32 @@
+/// This mixin creates beautiful columns for the children inside the wrapper
+// Author: Mads Thines
+
+// ALWAYS WRAP INSIDE A MEDIA QUERY
+//
+// Usages
+// @include media($small-up, $large-down) {
+//   @include col(4);
+// }
+// Or
+// @include media($large-uo) {
+//   @include col(4, 2%, div, top);
+// }
+
+@mixin col(
+  $columns: 4,
+  $margin: 2%,
+  $element: "*",
+  $alignment: top) {
+
+  > #{$element} {
+    display: inline-block;
+    vertical-align: $alignment;
+    margin-right: $margin;
+    margin-bottom: $margin;
+    width: calc(((100% - (#{$columns} - 1) * #{$margin})) / #{$columns});
+
+    &:nth-of-type(#{$columns}n + #{$columns}) {
+      margin-right: 0;
+    }
+  }
+}
