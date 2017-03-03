@@ -1,6 +1,6 @@
 {
   "name": "adapt-mixins",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Adapt Frontend Development Tools",
   "author": "Adapt",
   "main": "src/mixins/mixins.scss",
