@@ -1,3 +1,17 @@
+/// This mixin creates columns with different width
+// Author: Mads Thines
+
+/// How to use (Everythings optional)
+// @include collerShift(2 2 3, 2%, padding);
+// Or
+// @include collerShift(1 2, 2%, margin);
+//
+// Gives the output of amount of columns, separated by a specific type of spacing.
+// The first is the total amount divided by it's value
+// The second variable is spacing between,
+// The third is whether the type of spacing which can either be margin or padding
+//
+
 @function sum($list) {
   $total: 0;
   @each $item in $list {
@@ -6,30 +20,41 @@
   @return $total;
 }
 
-@mixin collerShift($columnList: null, $padding: null) {
+@mixin collerShift($columnList: null, $spacing: null, $type: "padding") {
   > * {
     display: inline-block;
     vertical-align: top;
 
     @for $i from 1 through length($columnList) {
-      &:nth-child(#{$i}) {
-        $width: (100% / sum($columnList)) * nth($columnList, $i);
-        width: $width;
-      }
+      @if $spacing != null {
+        @if $type == "padding" {
+          &:nth-child(#{$i}) {
+            $width: (100% / sum($columnList)) * nth($columnList, $i);
+            width: $width;
+          }
 
-      @if $padding != null {
+          &:nth-child(1n+2) {
+            padding-left: $spacing/2;
+          }
 
-        &:nth-child(#{$i}) {
-          $width: (100% / sum($columnList)) * nth($columnList, $i);
-          width: $width;
+          &:nth-last-child(1n+2) {
+            padding-right: $spacing/2;
+          }
         }
 
-        &:nth-child(1n+2) {
-          padding-left: $padding/2;
-        }
+        @if $type == "margin" {
+          &:nth-child(#{$i}) {
+            $width: (100% / sum($columnList)) * nth($columnList, $i) - ((length($columnList) * $spacing - $spacing) / (length($columnList)));
+            width: $width;
+          }
 
-        &:nth-last-child(1n+2) {
-          padding-right: $padding/2;
+          &:nth-child(1n+2) {
+            margin-left: $spacing/2;
+          }
+
+          &:nth-last-child(1n+2) {
+            margin-right: $spacing/2;
+          }
         }
       }
     }
