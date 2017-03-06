@@ -25,36 +25,38 @@
     display: inline-block;
     vertical-align: top;
 
-    @for $i from 1 through length($columnList) {
-      @if $spacing != null {
-        @if $type == "padding" {
+    @if $spacing != null {
+      @if $type == "padding" {
+        @for $i from 1 through length($columnList) {
           &:nth-child(#{$i}) {
             $width: (100% / sum($columnList)) * nth($columnList, $i);
             width: $width;
           }
-
-          &:nth-child(1n+2) {
-            padding-left: $spacing/2;
-          }
-
-          &:nth-last-child(1n+2) {
-            padding-right: $spacing/2;
-          }
         }
 
-        @if $type == "margin" {
+        &:nth-child(1n+2) {
+          padding-left: $spacing/2;
+        }
+
+        &:nth-last-child(1n+2) {
+          padding-right: $spacing/2;
+        }
+      }
+
+      @if $type == "margin" {
+        @for $i from 1 through length($columnList) {
           &:nth-child(#{$i}) {
             $width: (100% / sum($columnList)) * nth($columnList, $i) - ((length($columnList) * $spacing - $spacing) / (length($columnList)));
             width: $width;
           }
+        }
 
-          &:nth-child(1n+2) {
-            margin-left: $spacing/2;
-          }
+        &:nth-child(1n+2) {
+          margin-left: $spacing/2;
+        }
 
-          &:nth-last-child(1n+2) {
-            margin-right: $spacing/2;
-          }
+        &:nth-last-child(1n+2) {
+          margin-right: $spacing/2;
         }
       }
     }
