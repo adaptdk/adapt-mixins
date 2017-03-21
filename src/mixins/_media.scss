@@ -2,25 +2,56 @@
 // Creates media queries
 // Author: Mads Thines
 
-/// How to use:
-// @include media($mediaQuery);
+// How to use:
+// SCSS:
+// @include media($medium up) { /* style */ };
+// CSS output:
+// @media screen and (min-width: 768px) { /* style */ };
 
-@mixin media($mediaQuery:'', $mediaQuery2:'', $mediaQuery3:'', $mediaQuery4:'') {
-  @if $mediaQuery4 != '' {
-    @media screen and (#{$mediaQuery}) and (#{$mediaQuery2}), (#{$mediaQuery3}) and (#{$mediaQuery4}) {
+@mixin media($mediaQuery: null, $mediaQuery2: null, $mediaQuery3: null, $mediaQuery4: null) {
+  @if $mediaQuery4 != null {
+    @media screen and (min-width: #{$mediaQuery}) and (max-width: #{$mediaQuery2}),
+    (min-width: #{$mediaQuery3}) and (max-width: #{$mediaQuery4}) {
+
       @content;
+
     }
-  } @else if $mediaQuery3 != '' {
-    @media screen and (#{$mediaQuery}) and (#{$mediaQuery2}), (#{$mediaQuery3}) {
+  } @else if $mediaQuery3 != null {
+    @media screen and (min-width: #{$mediaQuery}) and (max-width: #{$mediaQuery2}),
+    (min-width: #{$mediaQuery3}) {
+
       @content;
+
     }
-  } @else if $mediaQuery2 != '' {
-    @media screen and (#{$mediaQuery}) and (#{$mediaQuery2}) {
+  } @else if $mediaQuery2 != null {
+    @media screen and (min-width: #{$mediaQuery}) and (max-width: #{$mediaQuery2}) {
+
       @content;
+
+    }
+  } @else if length($mediaQuery) >= 2 {
+
+    $type: nth($mediaQuery, 2);
+    $mediaQuery: nth($mediaQuery, 1);
+
+    @if $type == "up" {
+      @media screen and (min-width: #{$mediaQuery}) {
+
+        @content;
+
+      }
+    } @else if $type == "down" {
+      @media screen and (max-width: #{$mediaQuery}) {
+
+        @content;
+
+      }
     }
   } @else {
-    @media screen and (#{$mediaQuery}) {
+    @media screen and (min-width: #{$mediaQuery}) {
+
       @content;
+
     }
   }
 }
