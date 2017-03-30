@@ -8,47 +8,41 @@
 // CSS output:
 // @media screen and (min-width: 768px) { /* style */ };
 
-@mixin media($mediaQuery: null, $mediaQuery2: null, $mediaQuery3: null, $mediaQuery4: null) {
-  @if $mediaQuery4 != null {
-    @media screen and (min-width: #{$mediaQuery}) and (max-width: #{$mediaQuery2}),
-    (min-width: #{$mediaQuery3}) and (max-width: #{$mediaQuery4}) {
+@mixin media($mediaQuery: null, $mediaQuery2: null) {
+  @if length($mediaQuery2) >= 2 {
+    $type: nth($mediaQuery, 2);
+    $output: nth($mediaQuery, 1);
+    $type2: nth($mediaQuery2, 2);
+    $output2: nth($mediaQuery2, 1);
 
-      @content;
-
+    @if $type=="up" {
+      $output: "min-width:" $output;
+    } @else if $type=="down" {
+      $output: "max-width:" $output;
     }
-  } @else if $mediaQuery3 != null {
-    @media screen and (min-width: #{$mediaQuery}) and (max-width: #{$mediaQuery2}),
-    (min-width: #{$mediaQuery3}) {
 
-      @content;
-
+    @if $type2=="up" {
+      $output2: "min-width:" $output2;
+    } @else if $type2=="down" {
+      $output2: "max-width:" $output2;
     }
-  } @else if $mediaQuery2 != null {
-    @media screen and (min-width: #{$mediaQuery}) and (max-width: #{$mediaQuery2}) {
+
+    @media screen and (#{$output}) and (#{$output2}) {
 
       @content;
 
     }
   } @else if length($mediaQuery) >= 2 {
-
     $type: nth($mediaQuery, 2);
-    $mediaQuery: nth($mediaQuery, 1);
+    $output: nth($mediaQuery, 1);
 
-    @if $type == "up" {
-      @media screen and (min-width: #{$mediaQuery}) {
-
-        @content;
-
-      }
-    } @else if $type == "down" {
-      @media screen and (max-width: #{$mediaQuery}) {
-
-        @content;
-
-      }
+    @if $type=="up" {
+      $output: "min-width:" $output;
+    } @else if $type=="down" {
+      $output: "max-width:" $output;
     }
-  } @else {
-    @media screen and (min-width: #{$mediaQuery}) {
+
+    @media screen and (#{$output}) {
 
       @content;
 
