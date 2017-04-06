@@ -13,3 +13,6 @@ Compile :)
 
 # Mixin list
 WIKI - https://github.com/adaptdk/adapt-mixins/wiki/Mixin-Overview
+
+Version log - https://github.com/adaptdk/adapt-mixins/wiki/Version-Log
+
