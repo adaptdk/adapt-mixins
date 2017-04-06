@@ -20,45 +20,88 @@
   @return $total;
 }
 
-@mixin collerShift($columnList: null, $spacing: null, $type: "padding") {
-  > * {
+@mixin collerShift(
+  $columnList: null,
+  $spacing: null,
+  $type: "padding",
+  $selector: "*",
+  $ofType: child
+) {
+  > #{$selector} {
     display: inline-block;
     vertical-align: top;
 
     @if $spacing != null {
       @if $type == "padding" {
         @for $i from 1 through length($columnList) {
-          &:nth-child(#{$i}) {
-            $width: (100% / sum($columnList)) * nth($columnList, $i);
-            width: $width;
+          // Use child if you want it to work with all HTML tags
+          @if $ofType == child {
+            &:nth-child(#{$i}) {
+              $width: (100% / sum($columnList)) * nth($columnList, $i);
+              width: $width;
+            }
+            // Use type if you don't want interference with other HTML tags
+          } @else if $ofType == type {
+            &:nth-of-type(#{$i}) {
+              $width: (100% / sum($columnList)) * nth($columnList, $i);
+              width: $width;
+            }
           }
         }
 
-        &:nth-child(1n+2) {
-          padding-left: $spacing/2;
-        }
+        @if $ofType == child {
+          &:nth-child(1n+2) {
+            padding-left: $spacing/2;
+          }
 
-        &:nth-last-child(1n+2) {
-          padding-right: $spacing/2;
+          &:nth-last-child(1n+2) {
+            padding-right: $spacing/2;
+          }
+        } @else if $ofType == type {
+          &:nth-of-type(1n+2) {
+            padding-left: $spacing/2;
+          }
+
+          &:nth-last-of-type(1n+2) {
+            padding-right: $spacing/2;
+          }
         }
       }
 
       @if $type == "margin" {
         @for $i from 1 through length($columnList) {
-          &:nth-child(#{$i}) {
-            $width: (100% / sum($columnList)) * nth($columnList, $i) - ((length($columnList) * $spacing - $spacing) / (length($columnList)));
-            width: $width;
+          @if $ofType == child {
+            &:nth-child(#{$i}) {
+              $width: (100% / sum($columnList)) * nth($columnList, $i) - ((length($columnList) * $spacing - $spacing) / (length($columnList)));
+              width: $width;
+            }
+          } @else if $ofType == type {
+            &:nth-of-type(#{$i}) {
+              $width: (100% / sum($columnList)) * nth($columnList, $i) - ((length($columnList) * $spacing - $spacing) / (length($columnList)));
+              width: $width;
+            }
           }
         }
 
-        &:nth-child(1n+2) {
-          margin-left: $spacing/2;
-        }
+        @if $ofType == child {
+          &:nth-child(1n+2) {
+            margin-left: $spacing/2;
+          }
 
-        &:nth-last-child(1n+2) {
-          margin-right: $spacing/2;
+          &:nth-last-child(1n+2) {
+            margin-right: $spacing/2;
+          }
+        } @else if $ofType == type {
+          &:nth-of-type(1n+2) {
+            margin-left: $spacing/2;
+          }
+
+          &:nth-last-of-type(1n+2) {
+            margin-right: $spacing/2;
+          }
         }
       }
     }
   }
 }
+
