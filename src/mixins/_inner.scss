@@ -12,9 +12,9 @@
 
 @mixin inner(
   $padding: 20px,
-  $padding-large: null,
-  $padding-medium: null,
-  $padding-small: null) {
+  $padding-large: 0,
+  $padding-medium: 0,
+  $padding-small: 0) {
 
   max-width: $max-width;
   margin-left: auto;
