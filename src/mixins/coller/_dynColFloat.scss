@@ -8,7 +8,7 @@
 // @include dyncolFloat(2%, article);
 
 // dynCol Mixin Usage with display: inline-block with no fix. Useful if you've compressed/minified your HTML.
-@mixin dyncolFloat($margin: 2%, $element: "*") {
+@mixin dynColFloat($margin: 2%, $element: "*") {
   @for $i from 1 through 12 {
     > #{$element}:first-of-type:nth-last-of-type(#{$i}),
     > #{$element}:first-of-type:nth-last-of-type(#{$i}) ~ #{$element} {
