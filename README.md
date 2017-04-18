@@ -14,5 +14,25 @@ Compile :)
 # Mixin list
 WIKI - https://github.com/adaptdk/adapt-mixins/wiki/Mixin-Overview
 
-Version log - https://github.com/adaptdk/adapt-mixins/wiki/Version-Log
+### Included in Adapt Mixin
+- Clearfix
+- Inner
+- Media
+- Tablefix
+- **Coller family**
+  - col
+  - coller
+  - collerShift
+  - collerAdvanced
+  - collerFloat
+- **DynCol family**
+  - dynCol
+  - dynColFloat
+
+### Version meaning.
+**X.Y.Z** (eg. v1.3.2)
+
+- **X** New changes that breaks backwards compatibility
+- **Y** New feature added
+- **Z** Bug fixes
 
