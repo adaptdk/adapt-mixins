@@ -1,10 +1,8 @@
 // Depending on a max-width variable.
 //
-// @include inner;
+// @include inner; - Short version
 //  or
-// @include inner(20px);
-//  or
-// @include inner(5px, 10px, 20px, 20px);
+// @include inner(5px, 10px, 20px, 20px, $large, ($medium + 1px), $small); - Advanced version
 //
 // Breakpoints naming
 // No max width, $large, $medium, $small
@@ -14,7 +12,10 @@
   $padding: 20px,
   $padding-large: null,
   $padding-medium: null,
-  $padding-small: null) {
+  $padding-small: null,
+  $large-breakpoint: $large,
+  $medium-breakpoint: $medium,
+  $small-breakpoint: $small) {
 
   max-width: $max-width;
   margin-left: auto;
@@ -28,21 +29,21 @@
     padding-right: $padding;
 
     @if $padding-large != null {
-      @include media($large down) {
+      @include media($large-breakpoint down) {
         padding-left: $padding-large;
         padding-right: $padding-large;
       }
     }
 
     @if $padding-medium != null {
-      @include media($medium down) {
+      @include media($medium-breakpoint down) {
         padding-left: $padding-medium;
         padding-right: $padding-medium;
       }
     }
 
     @if $padding-small != null {
-      @include media($small down) {
+      @include media($small-breakpoint down) {
         padding-left: $padding-small;
         padding-right: $padding-small;
       }

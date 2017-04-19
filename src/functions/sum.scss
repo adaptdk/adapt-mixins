@@ -1,0 +1,8 @@
+// This function returns the sum of all the items in the list
+@function sum($list) {
+  $total: 0;
+  @each $item in $list {
+    $total: $total + $item;
+  }
+  @return $total;
+}

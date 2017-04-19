@@ -12,13 +12,7 @@
 // The third is whether the type of spacing which can either be margin or padding
 //
 
-@function sum($list) {
-  $total: 0;
-  @each $item in $list {
-    $total: $total + $item;
-  }
-  @return $total;
-}
+@import "../../functions/sum";
 
 @mixin collerShift(
   $columnList: null,
