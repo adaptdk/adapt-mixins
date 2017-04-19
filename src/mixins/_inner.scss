@@ -1,3 +1,13 @@
+// Depending on a max-width variable.
+//
+// @include inner; - Short version
+//  or
+// @include inner(5px, 10px $large, 20px ($medium + 1px), 20px $small); - Advanced version
+//
+// Breakpoints naming
+// No max width, $large, $medium, $small
+//
+
 @mixin inner(
   $padding: 20px,
   $padding-large: null $large,
