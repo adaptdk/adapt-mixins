@@ -1,49 +1,60 @@
-// Depending on a max-width variable.
-//
-// @include inner; - Short version
-//  or
-// @include inner(5px, 10px, 20px, 20px, $large, ($medium + 1px), $small); - Advanced version
-//
-// Breakpoints naming
-// No max width, $large, $medium, $small
-//
-
 @mixin inner(
   $padding: 20px,
-  $padding-large: null,
-  $padding-medium: null,
-  $padding-small: null,
-  $large-breakpoint: $large,
-  $medium-breakpoint: $medium,
-  $small-breakpoint: $small) {
+  $padding-large: null $large,
+  $padding-medium: null $medium,
+  $padding-small: null $small) {
+  $breakpoint-large: 0;
+  $breakpoint-medium: 0;
+  $breakpoint-small: 0;
 
   max-width: $max-width;
   margin-left: auto;
   margin-right: auto;
 
-  @if $padding > 0 or
-  $padding-large != null or
-  $padding-medium != null or
-  $padding-small != null {
+  @if $padding > 0 {
     padding-left: $padding;
     padding-right: $padding;
 
-    @if $padding-large != null {
-      @include media($large-breakpoint down) {
+    @if length($padding-large) == 2 {
+      $breakpoint-large: nth($padding-large, 2);
+      $padding-large: nth($padding-large, 1);
+
+      @include media($breakpoint-large down) {
+        padding-left: $padding-large;
+        padding-right: $padding-large;
+      }
+    }@else {
+      @include media($large down) {
         padding-left: $padding-large;
         padding-right: $padding-large;
       }
     }
 
-    @if $padding-medium != null {
-      @include media($medium-breakpoint down) {
+    @if length($padding-medium) == 2 {
+      $breakpoint-medium: nth($padding-medium, 2);
+      $padding-medium: nth($padding-medium, 1);
+
+      @include media($breakpoint-medium down) {
+        padding-left: $padding-medium;
+        padding-right: $padding-medium;
+      }
+    }@else {
+      @include media($medium down) {
         padding-left: $padding-medium;
         padding-right: $padding-medium;
       }
     }
 
-    @if $padding-small != null {
-      @include media($small-breakpoint down) {
+    @if length($padding-small) == 2 {
+      $breakpoint-small: nth($padding-small, 2);
+      $padding-small: nth($padding-small, 1);
+
+      @include media($breakpoint-small down) {
+        padding-left: $padding-small;
+        padding-right: $padding-small;
+      }
+    }@else {
+      @include media($small down) {
         padding-left: $padding-small;
         padding-right: $padding-small;
       }
