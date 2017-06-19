@@ -42,10 +42,29 @@
       $output: "max-width:" $output;
     }
 
-    @media screen and (#{$output}) {
+    @if length($mediaQuery) == 3 {
+      @if nth($mediaQuery, 3) == 'landscape' or nth($mediaQuery, 3) == 'portrait' {
+        $orientation: 'orientation:' nth($mediaQuery, 3);
+        @media (#{$orientation}) and (#{$output}) {
+          @content;
 
-      @content;
+        }
+      }
+    } @else {
+      @media screen and (#{$output}) {
 
+        @content;
+
+      }
+    }
+  } @else if length($mediaQuery) == 1 {
+    @if $mediaQuery == 'landscape' or $mediaQuery == 'portrait' {
+      $orientation: 'orientation:' $mediaQuery;
+      @media (#{$orientation}) {
+
+        @content;
+
+      }
     }
   }
 }

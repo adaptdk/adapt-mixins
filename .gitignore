@@ -1,3 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea
-node_modules
+/.idea
+/node_modules
+/test.html
+/src/core.scss
+/src/core.css
+/src/core.css.map
+/npm-debug.log
+/.sass-cache
