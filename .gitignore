@@ -7,3 +7,5 @@
 /src/core.css.map
 /npm-debug.log
 /.sass-cache
+*.map
+*.css

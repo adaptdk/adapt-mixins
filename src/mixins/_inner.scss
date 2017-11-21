@@ -1,73 +1,115 @@
-// Depending on a max-width variable.
-//
-// @include inner; - Short version
-//  or
-// @include inner(5px, 10px $large, 20px ($medium + 1px), 20px $small); - Advanced version
-//
-// Breakpoints naming
-// No max width, $large, $medium, $small
-//
-
 @mixin inner(
-  $padding: 20px,
-  $padding-large: null $large,
-  $padding-medium: null $medium,
-  $padding-small: null $small) {
-  $breakpoint-large: 0;
-  $breakpoint-medium: 0;
-  $breakpoint-small: 0;
+  $bp1: 900px 20px,
+  $bp2: null,
+  $bp3: null,
+  $bp4: null) {
 
-  max-width: $max-width;
+  // Initial styling
   margin-left: auto;
   margin-right: auto;
 
-  @if $padding > 0 {
-    padding-left: $padding;
-    padding-right: $padding;
+  @if length($bp1) == 2 {
+    // If there's something in the first and there's 2 variables
+    $bpPadding: nth($bp1, 1);
+    $bpMaxWidth: nth($bp1, 2);
+    max-width: $bpMaxWidth;
+    padding-left: $bpPadding;
+    padding-right: $bpPadding;
+  } @else {
+    // If there's only 1 variable
+    max-width: $bp1;
+  }
 
-    @if length($padding-large) == 2 {
-      $breakpoint-large: nth($padding-large, 2);
-      $padding-large: nth($padding-large, 1);
-
-      @include media($breakpoint-large down) {
-        padding-left: $padding-large;
-        padding-right: $padding-large;
+  @if $bp2 != null {
+    // If there's something in the second param
+    @if length($bp2) == 3 {
+      // If there's 3 variables
+      @media (min-width: nth($bp2, 2)) {
+        padding-left: nth($bp2, 1);
+        padding-right: nth($bp2, 1);
+        max-width: nth($bp2, 3);
       }
-    }@else {
-      @include media($large down) {
-        padding-left: $padding-large;
-        padding-right: $padding-large;
+    } @else if length($bp2) == 2 {
+      // If there's 2 variables
+      @media (min-width: nth($bp2, 2)) {
+        padding-left: nth($bp2, 1);
+        padding-right: nth($bp2, 1);
       }
+    } @else {
+      // If there's 1 variables, output a warning
+      @warn "
+        Please add 2 or 3 variables into the second params.
+        Params: { $padding $breakpoint (optional: $maxWidth) }
+                             ✖
+        @include inner($bp2, $bp3, $bp4, $bp4)
+      ";
     }
+  }
 
-    @if length($padding-medium) == 2 {
-      $breakpoint-medium: nth($padding-medium, 2);
-      $padding-medium: nth($padding-medium, 1);
-
-      @include media($breakpoint-medium down) {
-        padding-left: $padding-medium;
-        padding-right: $padding-medium;
+  @if $bp3 != null {
+    // If there's something in the third param
+    @if length($bp3) == 3 {
+      // If there's 3 variables
+      @media (min-width: nth($bp3, 2)) {
+        max-width: nth($bp3, 3);
+        padding-left: nth($bp3, 1);
+        padding-right: nth($bp3, 1);
       }
-    }@else {
-      @include media($medium down) {
-        padding-left: $padding-medium;
-        padding-right: $padding-medium;
+    } @else if length($bp3) == 2 {
+      // If there's 2 variables
+      @media (min-width: nth($bp3, 2)) {
+        padding-left: nth($bp3, 1);
+        padding-right: nth($bp3, 1);
       }
+    } @else {
+      // If there's 1 variables, output a warning
+      @warn "
+        Please add 2 or 3 variables into the third params.
+        Params: { $padding $breakpoint (optional: $maxWidth) }
+                                   ✖
+        @include inner($bp2, $bp3, $bp4, $bp4)
+      ";
     }
+  }
 
-    @if length($padding-small) == 2 {
-      $breakpoint-small: nth($padding-small, 2);
-      $padding-small: nth($padding-small, 1);
-
-      @include media($breakpoint-small down) {
-        padding-left: $padding-small;
-        padding-right: $padding-small;
+  @if $bp4 != null {
+    // If there's something in the forth param
+    @if length($bp4) == 3 {
+      // If there's 3 variables
+      @media (min-width: nth($bp4, 2)) {
+        max-width: nth($bp4, 3);
+        padding-left: nth($bp4, 1);
+        padding-right: nth($bp4, 1);
       }
-    }@else {
-      @include media($small down) {
-        padding-left: $padding-small;
-        padding-right: $padding-small;
+    } @else if length($bp4) == 2 {
+      // If there's 2 variables
+      @media (min-width: nth($bp4, 2)) {
+        padding-left: nth($bp4, 1);
+        padding-right: nth($bp4, 1);
       }
+    } @else {
+      // If there's 1 variables, output a warning
+      @warn "
+        Please add 2 or 3 variables into the forth params.
+        Params: { $padding $breakpoint (optional: $maxWidth) }
+                                         ✖
+        @include inner($bp2, $bp3, $bp4, $bp4)
+      ";
     }
+  }
+
+  // Help / Documentation
+  @if $bp1 == "help" {
+    @warn "
+      @params(
+        $padding $maxWidth,
+        $padding $breakpoint $maxWidth,
+        $padding $breakpoint $maxWidth,
+        $padding $breakpoint $maxWidth)
+
+      @usage
+        @include inner(10px 900px, 20px 768px);
+        @include inner(15px 400px, 20px 768px 600px, 20px 1024px 900px, 20px 1440px 1200px);
+    "
   }
 }

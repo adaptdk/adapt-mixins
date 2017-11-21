@@ -1,13 +1,3 @@
-/// Media Query
-// Creates media queries
-// Author: Mads Thines
-
-// How to use:
-// SCSS:
-// @include media($medium up) { /* style */ };
-// CSS output:
-// @media screen and (min-width: 768px) { /* style */ };
-
 @mixin media($mediaQuery: null, $mediaQuery2: null) {
   @if length($mediaQuery2) >= 2 {
     $type: nth($mediaQuery, 2);
@@ -66,5 +56,16 @@
 
       }
     }
+  }
+
+  // Help / Documentation
+  @if $mediaQuery == "help" {
+    @warn "
+      @params($breakpoint direction)
+
+      @usage
+        @include media(768px up);
+        @include media(1024px down);
+    "
   }
 }
