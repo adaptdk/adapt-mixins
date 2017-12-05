@@ -4,7 +4,9 @@
     @if length($innerArgs) == 3 {
       // If there's 3 variables
       @media (min-width: nth($innerArgs, 2)) {
-        max-width: nth($innerArgs, 3) @if nth($innerArgs, 1) != null {
+        max-width: nth($innerArgs, 3);
+
+        @if nth($innerArgs, 1) != null {
           padding-left: nth($innerArgs, 1);
           padding-right: nth($innerArgs, 1);
         }
