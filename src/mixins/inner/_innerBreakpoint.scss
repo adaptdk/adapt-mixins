@@ -1,0 +1,32 @@
+@mixin innerBreakpoint($innerArgs) {
+  @if $innerArgs != null {
+    // If there's something in the forth param
+    @if length($innerArgs) == 3 {
+      // If there's 3 variables
+      @media (min-width: nth($innerArgs, 2)) {
+        max-width: nth($innerArgs, 3);
+        @if nth($innerArgs, 1) != null {
+          padding-left: nth($innerArgs, 1);
+          padding-right: nth($innerArgs, 1);
+        }
+      }
+    } @else if length($innerArgs) == 2 {
+      // If there's 2 variables
+      @media (min-width: nth($innerArgs, 2)) {
+        @if nth($innerArgs, 1) != null {
+          padding-left: nth($innerArgs, 1);
+          padding-right: nth($innerArgs, 1);
+        }
+      }
+    } @else {
+      // If there's 1 variables, output a warning
+      @warn "
+        Please add at least 2 variables and max 3.
+        @param: { $padding $breakpoint (optional: $maxWidth) }
+
+        @usage:
+        @include inner($bp1, $bp2, $bp3, $bp4)
+      ";
+    }
+  }
+}

@@ -1,0 +1,39 @@
+// Utilities
+@import 'innerBreakpoint';
+
+@mixin inner($default: help, $args...) {
+
+  // Initial Styling
+  margin-left: auto;
+  margin-right: auto;
+
+  // If there's something in the first and there's 2 variables
+  @if nth($default, 2) != null {
+    max-width: nth($default, 2);
+  }
+
+  @if nth($default, 1) != null {
+    padding-left: nth($default, 1);
+    padding-right: nth($default, 1);
+  }
+
+  @each $arg in $args {
+    @include innerBreakpoint($arg);
+  }
+
+  // Help / Documentation
+  @if $default == help {
+    @warn "
+      @params(
+        $padding $maxWidth,
+        $padding $breakpoint $maxWidth,
+        $padding $breakpoint $maxWidth,
+        $padding $breakpoint $maxWidth)
+
+      @usage
+        @include inner(10px 900px, 20px 768px);
+        @include inner(null 900px, 20px 768px);
+        @include inner(15px 400px, 20px 768px 600px, 20px 1024px 900px, 20px 1440px 1200px);
+    "
+  }
+}
