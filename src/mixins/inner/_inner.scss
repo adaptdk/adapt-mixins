@@ -2,21 +2,25 @@
 @import 'innerBreakpoint';
 
 @mixin inner($default: help, $args...) {
+  $padding: nth($default, 1);
+  $maxWidth: nth($default, 2);
 
   // Initial Styling
   margin-left: auto;
   margin-right: auto;
 
-  // If there's something in the first and there's 2 variables
-  @if nth($default, 2) != null {
-    max-width: nth($default, 2);
+  // If Padding (1st param in {$default} argument), is not null
+  @if $padding != null {
+    padding-left: $padding;
+    padding-right: $padding;
   }
 
-  @if nth($default, 1) != null {
-    padding-left: nth($default, 1);
-    padding-right: nth($default, 1);
+  // If MaxWidth (2nd param in {$default} argument), is not null
+  @if $maxWidth != null {
+    max-width: $maxWidth;
   }
 
+  // Repeating for each argument
   @each $arg in $args {
     @include innerBreakpoint($arg);
   }
