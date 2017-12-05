@@ -3,7 +3,6 @@
 
 @mixin inner($default: help, $args...) {
   $padding: nth($default, 1);
-  $maxWidth: nth($default, 2);
 
   // Initial Styling
   margin-left: auto;
@@ -23,7 +22,7 @@
       max-width: $maxWidth;
     }
   }
-  
+
   // Repeating for each argument
   @each $arg in $args {
     @include innerBreakpoint($arg);
