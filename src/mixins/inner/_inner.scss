@@ -16,10 +16,14 @@
   }
 
   // If MaxWidth (2nd param in {$default} argument), is not null
-  @if $maxWidth != null {
-    max-width: $maxWidth;
-  }
+  @if length($default) == 2 {
+    $maxWidth: nth($default, 2);
 
+    @if $maxWidth != null {
+      max-width: $maxWidth;
+    }
+  }
+  
   // Repeating for each argument
   @each $arg in $args {
     @include innerBreakpoint($arg);
