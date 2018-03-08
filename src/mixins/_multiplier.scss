@@ -1,0 +1,15 @@
+// Mulitplies the selector to make it stronger. Useful instead of !important
+@mixin multiplier($multiplierQuantity: 1) {
+  $splitString: str_split('#{&}', '.');
+  $lastIndex: length($splitString);
+  $lastSelector: ".#{nth($splitString, $lastIndex)}";
+  $selector: &;
+
+  @for $quantity from 1 through $multiplierQuantity {
+    $selector: selector_append($selector, $lastSelector);
+  }
+
+  @at-root #{$selector} {
+    @content;
+  }
+}
